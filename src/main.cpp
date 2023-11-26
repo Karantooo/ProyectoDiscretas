@@ -3,10 +3,15 @@
 #include "constants.h"
 using namespace std;
 
+struct node{
+    int numeracion;
+    vector<node*> nodos_adyacentes;
+};
 
 int main(){
-   
-    cout << matriz.size();
+
+    node grafo_concepcion[112];
+    
     return 0;
 }
 
