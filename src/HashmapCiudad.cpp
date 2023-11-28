@@ -16,10 +16,9 @@ pair<int, int> coordenada_string_cartesiana(string input){
     int x = -1;
     int y = -1;
 
-    size_t pos = input.find(' ');
+    size_t pos = input.rfind(' ');
     string nombre_calle = input.substr(0, pos);
     string numero = input.substr(pos + 1);
-
     //Hacemos un set de coordenadas para las calles horizontales
     
     mapa_calles_x["Carrera"] = 0;
@@ -31,7 +30,7 @@ pair<int, int> coordenada_string_cartesiana(string input){
     mapa_calles_x["Cochrane"] = 6;
     mapa_calles_x["Chacabuco"] = 7;
 
-    //Hacemos un set de coordenadas para las calles verticales
+    //Hacemos un set de coordenadas para las calles verticales y diagonal
     mapa_calles_y["Arturo Prat"] = 0;
     mapa_calles_y["Serrano"] = 1;
     mapa_calles_y["Salas"] = 2;
@@ -46,19 +45,28 @@ pair<int, int> coordenada_string_cartesiana(string input){
     mapa_calles_y["Orompello"] = 11;
     mapa_calles_y["Ongolmo"] = 12;
     mapa_calles_y["Paicavi"] = 13;
+    mapa_calles_y["Diagonal Pedro Aguirre Cerda"] = 14;
 
     auto iterator_x = mapa_calles_x.find(nombre_calle);
     auto iterator_y = mapa_calles_y.find(nombre_calle);
 
-    if(iterator_x != mapa_calles_x.end()) {
+    if (stoi(numero) > 0) {
+        if(iterator_x != mapa_calles_x.end()) {
         x = iterator_x->second;
         y = std::stoi(numero);
+            if(nombre_calle == "Barros Arana" && 700 < stoi(numero) && stoi(numero) < 900 ){
+                y = -1;
+            }
+        }
+        if(iterator_y != mapa_calles_y.end()) {
+            y = iterator_y->second;
+            x = std::stoi(numero);
+            if((nombre_calle == "Anibal Pinto" && 400 < stoi(numero) && stoi(numero) < 600)  ||
+                (nombre_calle == "Diagonal Pedro Aguirre Cerda" && 300 < stoi(numero))){
+                x = -1;
+            }
+        }
     }
-    if(iterator_y != mapa_calles_x.end()) {
-        y = iterator_y->second;
-        x = std::stoi(numero);
-    }
-
     return make_pair(x,y);
 }
 
