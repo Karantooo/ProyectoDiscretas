@@ -4,6 +4,5 @@
 using namespace std;
 
 int coordenada_cartesiana_nodo(int x, int y);
-pair<int, int> coordenada_string_cartesiana(string input);
 pair<int, int> coordenada_nodo_cartesiana(int numero_nodo);
 
