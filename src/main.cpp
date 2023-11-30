@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "HashmapCiudad.h"
-#include "constants.h"
+#include "dijkstra.h"
 using namespace std;
 
 struct node{
@@ -10,10 +10,7 @@ struct node{
 };
 
 int main(){
-    auto ola = coordenada_string_cartesiana("Carrera 890");
-    cout << ola.first << " " << ola.second;
-    node grafo_concepcion[112];
-    
+    dijkstra(5);
     return 0;
 }
 
