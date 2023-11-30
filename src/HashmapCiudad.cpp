@@ -1,7 +1,6 @@
 #include <iostream>
 #include <unordered_map>
 #include <cstring>
-#include "HashmapCiudad.h"
 #include <vector>
 using namespace std;
 
@@ -97,16 +96,15 @@ vector<pair<int,int>> coordenada_string_cartesiana(string input){
             vectores_verticales.push_back(par_verticales2);
             return vectores_verticales;
         }
-    } else {
-        x1_horizontales = -1;           
-        x2_horizontales = -1;           
-        y1_horizontales = -1;           
-        y2_horizontales = -1;
-        par_horizontales1 = make_pair(x1_horizontales,y1_horizontales);
-        par_horizontales2 = make_pair(x2_horizontales,y2_horizontales);
-        vectores_horizontales = {par_horizontales1, par_horizontales2};
-        return vectores_horizontales;
-    }
+    } 
+    x1_horizontales = -1;           
+    x2_horizontales = -1;           
+    y1_horizontales = -1;           
+    y2_horizontales = -1;
+    par_horizontales1 = make_pair(x1_horizontales,y1_horizontales);
+    par_horizontales2 = make_pair(x2_horizontales,y2_horizontales);
+    vectores_horizontales = {par_horizontales1, par_horizontales2};
+    return vectores_horizontales;
 }
 
 pair<int, int> coordenada_nodo_cartesiana(int numero_nodo){
