@@ -3,4 +3,4 @@
 using namespace std;
 
 int minima_distancia(vector<int> distancias, vector<bool> nodos_visitados);
-void dijkstra(int nodo_inicio);
+vector<vector<int>> dijkstra(int nodo_inicio, int nodo_destino);

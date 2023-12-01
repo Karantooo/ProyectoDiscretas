@@ -13,7 +13,7 @@ int minima_distancia(vector<int> distancias, vector<bool> nodos_visitados) {
     }
     return indice;
 }
-void dijkstra(int nodo_inicio) {
+vector<vector<int>> dijkstra(int nodo_inicio, int nodo_destino) {
     vector<int> distancia_a_nodo(112);
     vector<bool> nodos_explorados(112);
     vector<int> nodos_previos(112);
@@ -28,7 +28,7 @@ void dijkstra(int nodo_inicio) {
 
     for (int i = 0; i < 111; i++) {
         int nodo_visitado = minima_distancia(distancia_a_nodo, nodos_explorados);
-        
+        if(nodo_visitado == nodo_destino) break;
         nodos_explorados[nodo_visitado] = true;
 
         for (int j = 0; j < 112; j++) {
@@ -38,4 +38,6 @@ void dijkstra(int nodo_inicio) {
             }
         }
     }
+    vector<vector<int>> resultado = {nodos_previos, distancia_a_nodo};
+    return resultado;
 }

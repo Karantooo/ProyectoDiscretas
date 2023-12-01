@@ -5,7 +5,7 @@
 using namespace std;
 
 int coordenada_cartesiana_nodo(int x, int y){
-    return 14 * y + x;
+    return 14 * x + y;
 }
 
 vector<pair<int,int>> coordenada_string_cartesiana(string input){
@@ -112,4 +112,13 @@ pair<int, int> coordenada_nodo_cartesiana(int numero_nodo){
     coordenadas_cartesianas.first = numero_nodo % 14;
     coordenadas_cartesianas.second = numero_nodo / 14;
     return coordenadas_cartesianas;
+}
+
+int retornaNumeroDeString(string input){
+    size_t pos = input.rfind(' ');
+    string nombre_calle = input.substr(0, pos);
+    string numero = input.substr(pos + 1);
+
+    int respuesta = stoi(numero);
+    return respuesta;
 }
