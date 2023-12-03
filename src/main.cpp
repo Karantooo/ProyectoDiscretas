@@ -35,6 +35,8 @@ int main(){
     int nodo_partida = -1, nodo_llegada = -1;
     vector<int> nodos_partida, nodos_llegada;
     vector<vector<int>> respuesta_mas_corta, auxiliar;
+    vector<int> menor_distancia_por_recorrido;
+    int menor_distancia;
     do{
 
         vector<pair<int,int>> calle_partida_xy = coordenada_string_cartesiana(calle_partida);
@@ -69,7 +71,7 @@ int main(){
 
         vector<vector<int>> resultado_dijkstra;
         int respuesta1;
-        int menor_distancia = INT_MAX;
+        menor_distancia = INT_MAX;
         // Verificar Dijkstra nodo_partida1 a nodo_destino1
         if(matriz[nodo_partida2][nodo_partida1] && matriz[nodo_destino1][nodo_destino2]){
             resultado_dijkstra = dijkstra(nodo_partida1, nodo_destino1);
@@ -132,18 +134,54 @@ int main(){
             calle_destino = calle_parada;
             se_repite_loop = true;
             auxiliar = respuesta_mas_corta;
+            menor_distancia_por_recorrido.push_back(menor_distancia);
             nodos_partida.push_back(nodo_partida);
             nodos_llegada.push_back(nodo_llegada);
         }
     }while(se_repite_loop);
-    
+
+    menor_distancia_por_recorrido.push_back(menor_distancia);
+    nodos_partida.push_back(nodo_partida);
+    nodos_llegada.push_back(nodo_llegada);
+
     auxiliar.insert(auxiliar.end(), respuesta_mas_corta.begin(), respuesta_mas_corta.end());
     respuesta_mas_corta = auxiliar;
 
-    cout << "El nodo inicial es: " << nodo_partida << " y el nodo final es: " << nodo_llegada << endl;
-    for (int i = 0; i < respuesta_mas_corta[0].size(); i++){
-        cout << i << " " << respuesta_mas_corta[0][i] << endl; 
+    vector<int> recorrido1;
+    recorrido1.push_back(nodos_llegada[0]);
+    int iterador = nodos_llegada[0];
+    while (iterador != nodos_partida[0]){
+        recorrido1.push_back(respuesta_mas_corta[0][iterador]);
+        iterador = respuesta_mas_corta[0][iterador];
     }
+
+    for (auto it = recorrido1.rbegin(); it != recorrido1.rend(); it++){
+        pair<int, int> traduccion_cartesiana = coordenada_nodo_cartesiana(*it);
+        cout << "Vaya a la interseccion de " << cartesiana_a_string(traduccion_cartesiana.first, traduccion_cartesiana.second) << endl;
+    }
+    
+    if (respuesta_mas_corta.size() == 4){
+        cout << "Ahora conduzca " << *(calle_destino.begin() + 1) << *(calle_destino.rbegin() + 0) << " metros y llegara a su parada " << calle_partida << endl;
+        vector<int> recorrido2;
+        recorrido2.push_back(nodos_llegada[1]);
+        int iterador = nodos_llegada[1];
+        while (iterador != nodos_partida[1]){
+            recorrido2.push_back(respuesta_mas_corta[2][iterador]);
+            iterador = respuesta_mas_corta[2][iterador];
+        }
+
+        for (auto it = recorrido2.rbegin(); it != recorrido2.rend(); it++){
+            pair<int, int> traduccion_cartesiana = coordenada_nodo_cartesiana(*it);
+            cout << "Vaya a la interseccion de " << cartesiana_a_string(traduccion_cartesiana.first, traduccion_cartesiana.second) << endl;
+        }
+        cout << "Conduzca " << *(calle_destino.begin() + 1) << *(calle_destino.rbegin() + 0)  << " y llegara a " << calle_destino << endl;
+        cout << "La cantidad total de metros fue de " << menor_distancia_por_recorrido[0] + menor_distancia_por_recorrido[1] << endl;   
+    }
+    else{
+        cout << "Conduzca " << *(calle_destino.rbegin() + 1) << *(calle_destino.rbegin()) << " y llegara a " << calle_destino << endl;
+        cout << "La cantidad total de metros fue de " << menor_distancia_por_recorrido[0] << endl;   
+
+    }    
 
     return 0;
 }
