@@ -70,8 +70,11 @@ vector<pair<int,int>> coordenada_string_cartesiana(string input){
         y1_horizontales = (std::stoi(numero)) / 100;                                // Establecemos una coordenada para la cuadra actual
         y2_horizontales = ((std::stoi(numero)) / 100) + 1;                          // y la siguiente
 
-            if(nombre_calle == "Barros Arana" && 700 < stoi(numero) && stoi(numero) < 900 ){
-                y1_horizontales = -1;
+            if( ((nombre_calle == "Carrera" || nombre_calle == "Maipu" || nombre_calle == "Freire" ||
+                nombre_calle == "Barros Arana" || nombre_calle == "O'higgins" || nombre_calle == "San Martin" ||
+                nombre_calle == "Cochrane" || nombre_calle == "Chacabuco") && stoi(numero) > 1300) ||
+                nombre_calle == "Barros Arana" && 700 < stoi(numero) && stoi(numero) < 900 ){
+                    y1_horizontales = -1;
             }
             par_horizontales1 = make_pair(x1_horizontales,y1_horizontales);
             par_horizontales2 = make_pair(x2_horizontales,y2_horizontales);
@@ -86,9 +89,15 @@ vector<pair<int,int>> coordenada_string_cartesiana(string input){
             x1_verticales = (std::stoi(numero)) / 100;                              // Establecemos una coordenada para la cuadra actual
             x2_verticales = ((std::stoi(numero)) / 100) + 1;                        // y la siguiente
 
-            if((nombre_calle == "Anibal Pinto" && 400 < stoi(numero) && stoi(numero) < 600)  ||
+            if(((nombre_calle == "Arturo Prat" || nombre_calle == "Serrano" || nombre_calle == "Salas" ||
+                nombre_calle == "Angol" || nombre_calle == "Lincoyan" || nombre_calle == "Rengo" ||
+                nombre_calle == "Caupolican" || nombre_calle == "Anibal Pinto" || nombre_calle == "Colo Colo" ||
+                nombre_calle == "Castellon" || nombre_calle == "Tucapel" || nombre_calle == "Orompello" || 
+                nombre_calle == "Ongolmo" || nombre_calle == "Paicavi" || 
+                nombre_calle == "Diagonal Pedro Aguirre Cerda") && stoi(numero) > 700 ) ||
+                (nombre_calle == "Anibal Pinto" && 400 < stoi(numero) && stoi(numero) < 600)  ||
                 (nombre_calle == "Diagonal Pedro Aguirre Cerda" && 300 < stoi(numero))){
-                x1_verticales = -1;
+                    x1_verticales = -1;
             }
             par_verticales1 =make_pair(x1_verticales,y1_verticales);
             par_verticales2 =make_pair(x2_verticales,y2_verticales);
