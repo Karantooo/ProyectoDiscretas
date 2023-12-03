@@ -118,9 +118,43 @@ vector<pair<int,int>> coordenada_string_cartesiana(string input){
 
 pair<int, int> coordenada_nodo_cartesiana(int numero_nodo){
     pair<int, int> coordenadas_cartesianas;
-    coordenadas_cartesianas.first = numero_nodo % 14;
-    coordenadas_cartesianas.second = numero_nodo / 14;
+    coordenadas_cartesianas.first = numero_nodo / 14;
+    coordenadas_cartesianas.second = numero_nodo % 14;
     return coordenadas_cartesianas;
+}
+
+string cartesiana_a_string(int x, int y){
+    unordered_map<int, string> mapa_calles_x;
+    unordered_map<int, string> mapa_calles_y;
+
+    //Hacemos un set de coordenadas para las calles horizontales
+    mapa_calles_x[0] = "Carrera";
+    mapa_calles_x[1] = "Maipu";
+    mapa_calles_x[2] = "Freire";
+    mapa_calles_x[3] = "Barros Arana";
+    mapa_calles_x[4] = "O'higgins";
+    mapa_calles_x[5] = "San Martin";
+    mapa_calles_x[6] = "Cochrane";
+    mapa_calles_x[7] = "Chacabuco";
+
+    //Hacemos un set de coordenadas para las calles verticales y diagonal
+    mapa_calles_y[0] ="Arturo Prat";
+    mapa_calles_y[1] ="Serrano";
+    mapa_calles_y[2] ="Salas";
+    mapa_calles_y[3] ="Angol";
+    mapa_calles_y[4] ="Lincoyan";
+    mapa_calles_y[5] ="Rengo";
+    mapa_calles_y[6] ="Caupolican";
+    mapa_calles_y[7] ="Anibal Pinto";
+    mapa_calles_y[8] ="Colo Colo";
+    mapa_calles_y[9] ="Castellon";
+    mapa_calles_y[10] ="Tucapel";
+    mapa_calles_y[11] ="Orompello";
+    mapa_calles_y[12] ="Ongolmo";
+    mapa_calles_y[13] ="Paicavi";
+    mapa_calles_y[14] ="Diagonal Pedro Aguirre Cerda";
+
+    return mapa_calles_x[x] + " y " + mapa_calles_y[y];
 }
 
 int retornaNumeroDeString(string input){
