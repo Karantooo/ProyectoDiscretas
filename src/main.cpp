@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
-#include <algorithm>
 #include "HashmapCiudad.h"
 #include "dijkstra.h"
 #include "constants.h"
@@ -23,13 +22,19 @@ int main(){
 
     cout << "¿Desea hacer una parada? [y/n]: ";
     string respuesta;
-    cin >> respuesta;
+    getline(cin, respuesta);
+    
 
     if(respuesta[0] == 'y' || respuesta[0] == 'Y'){
         cout << "Por favor, ingrese la calle donde desea parar: ";
         getline(cin, calle_parada);
         swap(calle_destino, calle_parada);
     }
+
+    bool se_repite_loop = false;
+    int nodo_partida = -1, nodo_llegada = -1;
+    vector<int> nodos_partida, nodos_llegada;
+    vector<vector<int>> respuesta_mas_corta, auxiliar;
     do{
 
         vector<pair<int,int>> calle_partida_xy = coordenada_string_cartesiana(calle_partida);
@@ -62,10 +67,9 @@ int main(){
         
         vector<vector<int>> vector_resultado = dijkstra(nodo_partida1, nodo_destino1);
 
-        vector<vector<int>> resultado_dijkstra, respuesta_mas_corta;
+        vector<vector<int>> resultado_dijkstra;
         int respuesta1;
         int menor_distancia = INT_MAX;
-        int nodo_partida = -1, nodo_llegada = -1;
         // Verificar Dijkstra nodo_partida1 a nodo_destino1
         if(matriz[nodo_partida2][nodo_partida1] && matriz[nodo_destino1][nodo_destino2]){
             resultado_dijkstra = dijkstra(nodo_partida1, nodo_destino1);
@@ -121,14 +125,21 @@ int main(){
                 nodo_llegada = nodo_destino2;
             } 
         }
-        bool se_repite_loop = false;
+        se_repite_loop = false;
         if (respuesta[0] == 'y' || respuesta[0] == 'Y'){
             respuesta = "n";
             calle_partida = calle_destino;
             calle_destino = calle_parada;
             se_repite_loop = true;
+            auxiliar = respuesta_mas_corta;
+            nodos_partida.push_back(nodo_partida);
+            nodos_llegada.push_back(nodo_llegada);
         }
     }while(se_repite_loop);
+    
+    auxiliar.insert(auxiliar.end(), respuesta_mas_corta.begin(), respuesta_mas_corta.end());
+    respuesta_mas_corta = auxiliar;
+
     cout << "El nodo inicial es: " << nodo_partida << " y el nodo final es: " << nodo_llegada << endl;
     for (int i = 0; i < respuesta_mas_corta[0].size(); i++){
         cout << i << " " << respuesta_mas_corta[0][i] << endl; 
