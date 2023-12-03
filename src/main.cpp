@@ -21,10 +21,10 @@ int main(){
     getline(cin, calle_destino);
 
     cout << "¿Desea hacer una parada? [y/n]: ";
-    char respuesta;
+    string respuesta;
     cin >> respuesta;
 
-    if(respuesta == 'y'){
+    if(respuesta[0] == 'y' || respuesta[0] == 'Y'){
         cout << "Por favor, ingrese la calle donde desea parar: ";
         getline(cin, calle_parada);
     }

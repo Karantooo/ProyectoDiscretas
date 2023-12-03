@@ -2,6 +2,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 #include <vector>
-// Declaración de constantes
+#include <climits>
+// Declaración de constante
 extern std::vector<std::vector<int>> matriz;
 #endif
