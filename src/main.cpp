@@ -66,8 +66,6 @@ int main(){
         int nodo_partida2 = coordenada_cartesiana_nodo(calle_partida_xy[1].first, calle_partida_xy[1].second);
         int nodo_destino1 = coordenada_cartesiana_nodo(calle_destino_xy[0].first, calle_destino_xy[0].second);
         int nodo_destino2 = coordenada_cartesiana_nodo(calle_destino_xy[1].first, calle_destino_xy[1].second);
-        
-        vector<vector<int>> vector_resultado = dijkstra(nodo_partida1, nodo_destino1);
 
         vector<vector<int>> resultado_dijkstra;
         int respuesta1;
