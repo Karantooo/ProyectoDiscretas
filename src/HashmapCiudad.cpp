@@ -63,7 +63,7 @@ vector<pair<int,int>> coordenada_string_cartesiana(string input){
 
     if (stoi(numero) > 0) {
         vector<pair<int,int>> resultado; 
-        if(nombre_calle == "Diagonal"){
+        if(nombre_calle == "Pedro Aguirre Cerda"){
             if (stoi(numero) <= 100){
                 resultado = {make_pair(7,13), make_pair(6,12)};
                 return resultado;
@@ -165,7 +165,7 @@ string cartesiana_a_string(int x, int y){
     mapa_calles_y[11] ="Orompello";
     mapa_calles_y[12] ="Ongolmo";
     mapa_calles_y[13] ="Paicavi";
-    mapa_calles_y[14] ="Diagonal";
+    mapa_calles_y[14] ="Pedro Aguirre Cerda";
 
     return mapa_calles_x[x] + " y " + mapa_calles_y[y];
 }
