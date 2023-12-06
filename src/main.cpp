@@ -54,7 +54,6 @@ int main(){
             cout << "Ha ocurrido un error en el ingreso de datos: Calle de partida invalida. ";
             exit(-1);
         }
-        cout << "Pase las calles a xy" << endl;
         cond1 = (calle_destino_xy[0].first == -1);
         cond2 = (calle_destino_xy[0].second == -1);
         cond3 = (calle_destino_xy[1].first == -1);
@@ -70,15 +69,11 @@ int main(){
         int nodo_destino1 = coordenada_cartesiana_nodo(calle_destino_xy[0].first, calle_destino_xy[0].second);
         int nodo_destino2 = coordenada_cartesiana_nodo(calle_destino_xy[1].first, calle_destino_xy[1].second);
         
-        cout << "Obtuve los nodos " << endl;
-
         vector<vector<int>> vector_resultado = dijkstra(nodo_partida1, nodo_destino1);
 
         vector<vector<int>> resultado_dijkstra;
         int respuesta1;
         menor_distancia = INT_MAX;
-        cout << "nodo_partida 1 " << nodo_partida1 << " " << "nodo_partida 2 " << nodo_partida2 << endl;
-        cout << "nodo_llegada" << nodo_partida1 << " " << "nodo_llegada 2 " << nodo_partida2 << endl;
         
         // Verificar Dijkstra nodo_partida1 a nodo_destino1
         if(matriz[nodo_partida2][nodo_partida1] && matriz[nodo_destino1][nodo_destino2]){
@@ -91,13 +86,14 @@ int main(){
                 respuesta_mas_corta = resultado_dijkstra;
                 nodo_partida = nodo_partida1;
                 nodo_llegada = nodo_destino1;
+
             } 
         }
 
         // Verificar Dijkstra nodo_partida1 a nodo_destino2
         if(matriz[nodo_partida2][nodo_partida1] && matriz[nodo_destino2][nodo_destino1]){
             resultado_dijkstra = dijkstra(nodo_partida1, nodo_destino2);
-            respuesta1 = resultado_dijkstra[1][nodo_destino1] +
+            respuesta1 = resultado_dijkstra[1][nodo_destino2] +
                             (100 - (retornaNumeroDeString(calle_destino) % 100)) +
                             ((retornaNumeroDeString(calle_partida) % 100));
             if(respuesta1 < menor_distancia){
@@ -125,7 +121,8 @@ int main(){
         // Verificar Dijkstra nodo_partida2 a nodo_destino2
         if(matriz[nodo_partida1][nodo_partida2] && matriz[nodo_destino2][nodo_destino1]){
             resultado_dijkstra = dijkstra(nodo_partida2, nodo_destino2);
-            respuesta1 = resultado_dijkstra[1][nodo_destino1] +
+
+            respuesta1 = resultado_dijkstra[1][nodo_destino2] +
                             (100 - (retornaNumeroDeString(calle_destino) % 100)) +
                             (100 - (retornaNumeroDeString(calle_partida) % 100));
             if(respuesta1 < menor_distancia){
@@ -183,11 +180,11 @@ int main(){
             pair<int, int> traduccion_cartesiana = coordenada_nodo_cartesiana(*it);
             cout << "Vaya a la interseccion de " << cartesiana_a_string(traduccion_cartesiana.first, traduccion_cartesiana.second) << endl;
         }
-        cout << "Conduzca " << *(calle_destino.begin() + 1) << *(calle_destino.rbegin() + 0)  << " y llegara a " << calle_destino << endl;
+        cout << "Conduzca " << *(calle_destino.rbegin() + 1) << *(calle_destino.rbegin() + 0)  << " y llegara a " << calle_destino << endl;
         cout << "La cantidad total de metros fue de " << menor_distancia_por_recorrido[0] + menor_distancia_por_recorrido[1] << endl;   
     }
     else{
-        cout << "Conduzca " << *(calle_destino.rbegin() + 1) << *(calle_destino.rbegin()) << " y llegara a " << calle_destino << endl;
+        cout << "Conduzca " << *(calle_destino.rbegin() + 1) << *(calle_destino.rbegin()) << " metros y llegara a " << calle_destino << endl;
         cout << "La cantidad total de metros fue de " << menor_distancia_por_recorrido[0] << endl;   
 
     }    
