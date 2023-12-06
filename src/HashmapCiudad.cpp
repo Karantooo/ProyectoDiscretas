@@ -70,7 +70,7 @@ vector<pair<int,int>> coordenada_string_cartesiana(string input){
             } else if (stoi(numero) <= 200){
                 resultado = {make_pair(6,12), make_pair(5,11)};
                 return resultado;
-            } else if (stoi(numero) <= 300){
+            } else if (stoi(numero) < 300){
                 resultado = {make_pair(5,11), make_pair(4,10)};
                 return resultado;
             } else {
