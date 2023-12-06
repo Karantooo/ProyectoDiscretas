@@ -42,7 +42,7 @@ vector<pair<int,int>> coordenada_string_cartesiana(string input){
     mapa_calles_x["Cochrane"] = 6;
     mapa_calles_x["Chacabuco"] = 7;
 
-    //Hacemos un set de coordenadas para las calles verticales y diagonal
+    //Hacemos un set de coordenadas para las calles verticales
     mapa_calles_y["Arturo Prat"] = 0;
     mapa_calles_y["Serrano"] = 1;
     mapa_calles_y["Salas"] = 2;
@@ -57,12 +57,27 @@ vector<pair<int,int>> coordenada_string_cartesiana(string input){
     mapa_calles_y["Orompello"] = 11;
     mapa_calles_y["Ongolmo"] = 12;
     mapa_calles_y["Paicavi"] = 13;
-    mapa_calles_y["Diagonal Pedro Aguirre Cerda"] = 14;
 
     auto iterator_x = mapa_calles_x.find(nombre_calle);
     auto iterator_y = mapa_calles_y.find(nombre_calle);
 
     if (stoi(numero) > 0) {
+        vector<pair<int,int>> resultado; 
+        if(nombre_calle == "Diagonal"){
+            if (stoi(numero) <= 100){
+                resultado = {make_pair(13,7), make_pair(12,6)};
+                return resultado;
+            } else if (stoi(numero) <= 200){
+                resultado = {make_pair(12,6), make_pair(11,5)};
+                return resultado;
+            } else if (stoi(numero) <= 300){
+                resultado = {make_pair(11,5), make_pair(10,4)};
+                return resultado;
+            } else {
+                resultado = {make_pair(-1,-1), make_pair(-1,-1)};
+                return resultado;
+            }
+        }
         if(iterator_x != mapa_calles_x.end()) {
         x1_horizontales = iterator_x->second;                                       // Para las coordenadas de calles horizontales, 
         x2_horizontales = iterator_x->second;                                       // el segundo parámetro será la cuadra
@@ -93,10 +108,8 @@ vector<pair<int,int>> coordenada_string_cartesiana(string input){
                 nombre_calle == "Angol" || nombre_calle == "Lincoyan" || nombre_calle == "Rengo" ||
                 nombre_calle == "Caupolican" || nombre_calle == "Anibal Pinto" || nombre_calle == "Colo Colo" ||
                 nombre_calle == "Castellon" || nombre_calle == "Tucapel" || nombre_calle == "Orompello" || 
-                nombre_calle == "Ongolmo" || nombre_calle == "Paicavi" || 
-                nombre_calle == "Diagonal Pedro Aguirre Cerda") && stoi(numero) > 700 ) ||
-                (nombre_calle == "Anibal Pinto" && 400 < stoi(numero) && stoi(numero) < 600)  ||
-                (nombre_calle == "Diagonal Pedro Aguirre Cerda" && 300 < stoi(numero))){
+                nombre_calle == "Ongolmo" || nombre_calle == "Paicavi") && stoi(numero) > 700 ) ||
+                (nombre_calle == "Anibal Pinto" && 400 < stoi(numero) && stoi(numero) < 600)){
                     x1_verticales = -1;
             }
             par_verticales1 =make_pair(x1_verticales,y1_verticales);
@@ -152,7 +165,7 @@ string cartesiana_a_string(int x, int y){
     mapa_calles_y[11] ="Orompello";
     mapa_calles_y[12] ="Ongolmo";
     mapa_calles_y[13] ="Paicavi";
-    mapa_calles_y[14] ="Diagonal Pedro Aguirre Cerda";
+    mapa_calles_y[14] ="Diagonal";
 
     return mapa_calles_x[x] + " y " + mapa_calles_y[y];
 }

@@ -11,6 +11,9 @@ using namespace std;
 // retornar de nodo a calle 
 
 int main(){
+    cout << coordenada_string_cartesiana("Diagonal 150")[0].first << " " << coordenada_string_cartesiana("Diagonal 150")[0].second << endl;
+
+
     cout << "Bienvenido/a a nuestro Buscador de Rutas por el centro de Concepcion. " << endl;
     cout << "Por favor, seleccione la direccion de partida: ";
 
