@@ -161,7 +161,7 @@ int main(){
     }
 
     
-    cout << "Conduzca " << distancias_a_primer_nodo[0] << " metros en la direccion de la calle." << endl;
+    cout << "Conduzca " << distancias_a_primer_nodo[0] % 100<< " metros en la direccion de la calle." << endl;
     
 
     for (auto it = recorrido1.rbegin(); it != recorrido1.rend(); it++){
@@ -170,7 +170,7 @@ int main(){
     }
     
     if (respuesta_mas_corta.size() == 4){
-        cout << "Ahora conduzca " << *(calle_destino.rbegin() + 1) << *(calle_destino.rbegin() + 0) << " metros y llegara a su parada " << calle_partida << endl;
+        cout << "Ahora conduzca " << (menor_distancia_por_recorrido[0] - (distancias_a_primer_nodo[0] + (recorrido1.size() - 2) * 100)) % 100 << " metros y llegara a su parada " << calle_partida << endl;
         vector<int> recorrido2;
         recorrido2.push_back(nodos_llegada[1]);
         int iterador = nodos_llegada[1];
@@ -179,16 +179,16 @@ int main(){
             iterador = respuesta_mas_corta[2][iterador];
         }
         
-        cout << "Conduzca " << distancias_a_primer_nodo[1] << " metros en la direccion de la calle." << endl;
+        cout << "Conduzca " << distancias_a_primer_nodo[1] % 100 << " metros en la direccion de la calle." << endl;
         for (auto it = recorrido2.rbegin(); it != recorrido2.rend(); it++){
             pair<int, int> traduccion_cartesiana = coordenada_nodo_cartesiana(*it);
             cout << "Vaya a la interseccion de " << cartesiana_a_string(traduccion_cartesiana.first, traduccion_cartesiana.second) << endl;
         }
-        cout << "Conduzca " << *(calle_destino.rbegin() + 1) << *(calle_destino.rbegin() + 0)  << " y llegara a " << calle_destino << endl;
+        cout << "Conduzca " << (menor_distancia_por_recorrido[1] - (distancias_a_primer_nodo[1] + (recorrido2.size() - 1) * 100)) % 100  << " metros y llegara a " << calle_destino << endl;
         cout << "La cantidad total de metros fue de " << menor_distancia_por_recorrido[0] + menor_distancia_por_recorrido[1] << endl;   
     }
     else{
-        cout << "Conduzca " << *(calle_destino.rbegin() + 1) << *(calle_destino.rbegin()) << " metros y llegara a " << calle_destino << endl;
+        cout << "Conduzca " << (menor_distancia_por_recorrido[0] - (distancias_a_primer_nodo[0] + (recorrido1.size() - 2) * 100)) % 100 << " metros y llegara a " << calle_destino << endl;
         cout << "La cantidad total de metros fue de " << menor_distancia_por_recorrido[0] << endl;   
     }    
 
