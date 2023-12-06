@@ -21,6 +21,10 @@ A continuacion voy a listar como se tiene que ingresar cada calle en nuestro pro
 17. Colo Colo
 18. Castellon
 19. Pedro Aguirre Cerda
+20. Tucapel
+21. Orompello
+22. Ongolmo
+23. Paicavi
 
 # Ejemplo de entrada en nuestro programa.
 A continuación le presentamos un ejemplo de uso de nuestro programa. Por favor respete la sintaxis o el programa no va a funcionar. 
