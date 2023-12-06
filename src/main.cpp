@@ -74,9 +74,9 @@ int main(){
         // Verificar Dijkstra nodo_partida1 a nodo_destino1
         if(matriz[nodo_partida2][nodo_partida1] && matriz[nodo_destino1][nodo_destino2]){
             resultado_dijkstra = dijkstra(nodo_partida1, nodo_destino1);
-            distancia_a_primer_nodo = (retornaNumeroDeString(calle_partida) % 100);
+            distancia_a_primer_nodo = (retorna_numero_de_string(calle_partida) % 100);
             respuesta1 = resultado_dijkstra[1][nodo_destino1] +
-                            (retornaNumeroDeString(calle_destino) % 100) +
+                            (retorna_numero_de_string(calle_destino) % 100) +
                             distancia_a_primer_nodo;
             if(respuesta1 < menor_distancia){
                 menor_distancia = respuesta1;
@@ -90,9 +90,9 @@ int main(){
         // Verificar Dijkstra nodo_partida1 a nodo_destino2
         if(matriz[nodo_partida2][nodo_partida1] && matriz[nodo_destino2][nodo_destino1]){
             resultado_dijkstra = dijkstra(nodo_partida1, nodo_destino2);
-            distancia_a_primer_nodo = (retornaNumeroDeString(calle_partida) % 100);
+            distancia_a_primer_nodo = (retorna_numero_de_string(calle_partida) % 100);
             respuesta1 = resultado_dijkstra[1][nodo_destino2] +
-                            (100 - (retornaNumeroDeString(calle_destino) % 100)) +
+                            (100 - (retorna_numero_de_string(calle_destino) % 100)) +
                             distancia_a_primer_nodo;
             if(respuesta1 < menor_distancia){
                 menor_distancia = respuesta1;
@@ -105,9 +105,9 @@ int main(){
         // Verificar Dijkstra nodo_partida2 a nodo_destino1
         if(matriz[nodo_partida1][nodo_partida2] && matriz[nodo_destino1][nodo_destino2]){
             resultado_dijkstra = dijkstra(nodo_partida2, nodo_destino1);
-            distancia_a_primer_nodo = 100 - (retornaNumeroDeString(calle_partida) % 100);
+            distancia_a_primer_nodo = 100 - (retorna_numero_de_string(calle_partida) % 100);
             respuesta1 = resultado_dijkstra[1][nodo_destino1] +
-                            (retornaNumeroDeString(calle_destino) % 100) +
+                            (retorna_numero_de_string(calle_destino) % 100) +
                             distancia_a_primer_nodo;
             if(respuesta1 < menor_distancia){
                 menor_distancia = respuesta1;
@@ -120,9 +120,9 @@ int main(){
         // Verificar Dijkstra nodo_partida2 a nodo_destino2
         if(matriz[nodo_partida1][nodo_partida2] && matriz[nodo_destino2][nodo_destino1]){
             resultado_dijkstra = dijkstra(nodo_partida2, nodo_destino2);
-            distancia_a_primer_nodo = (100 - (retornaNumeroDeString(calle_partida) % 100));
+            distancia_a_primer_nodo = (100 - (retorna_numero_de_string(calle_partida) % 100));
             respuesta1 = resultado_dijkstra[1][nodo_destino2] +
-                            (100 - (retornaNumeroDeString(calle_destino) % 100)) +
+                            (100 - (retorna_numero_de_string(calle_destino) % 100)) +
                             distancia_a_primer_nodo;
             if(respuesta1 < menor_distancia){
                 menor_distancia = respuesta1;

@@ -170,7 +170,7 @@ string cartesiana_a_string(int x, int y){
     return mapa_calles_x[x] + " y " + mapa_calles_y[y];
 }
 
-int retornaNumeroDeString(string input){
+int retorna_numero_de_string(string input){
     size_t pos = input.rfind(' ');
     string nombre_calle = input.substr(0, pos);
     string numero = input.substr(pos + 1);
