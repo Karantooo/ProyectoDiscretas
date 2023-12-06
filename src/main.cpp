@@ -161,7 +161,7 @@ int main(){
     }
 
     
-    cout << "Conduzca " << distancias_a_primer_nodo[0] << " metros y " << endl;
+    cout << "Conduzca " << distancias_a_primer_nodo[0] << " metros en la direccion de la calle." << endl;
     
 
     for (auto it = recorrido1.rbegin(); it != recorrido1.rend(); it++){
