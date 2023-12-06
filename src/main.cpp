@@ -11,9 +11,7 @@ using namespace std;
 // retornar de nodo a calle 
 
 int main(){
-    cout << coordenada_string_cartesiana("Diagonal 150")[0].first << " " << coordenada_string_cartesiana("Diagonal 150")[0].second << endl;
-
-
+   
     cout << "Bienvenido/a a nuestro Buscador de Rutas por el centro de Concepcion. " << endl;
     cout << "Por favor, seleccione la direccion de partida: ";
 
@@ -38,10 +36,10 @@ int main(){
     int nodo_partida = -1, nodo_llegada = -1;
     vector<int> nodos_partida, nodos_llegada;
     vector<vector<int>> respuesta_mas_corta, auxiliar;
-    vector<int> menor_distancia_por_recorrido;
+    vector<int> menor_distancia_por_recorrido, distancias_a_primer_nodo;
     int menor_distancia;
     do{
-
+        int distancia_a_primer_nodo;
         vector<pair<int,int>> calle_partida_xy = coordenada_string_cartesiana(calle_partida);
         vector<pair<int,int>> calle_destino_xy = coordenada_string_cartesiana(calle_destino);
 
@@ -78,9 +76,10 @@ int main(){
         // Verificar Dijkstra nodo_partida1 a nodo_destino1
         if(matriz[nodo_partida2][nodo_partida1] && matriz[nodo_destino1][nodo_destino2]){
             resultado_dijkstra = dijkstra(nodo_partida1, nodo_destino1);
+            distancia_a_primer_nodo = (retornaNumeroDeString(calle_partida) % 100);
             respuesta1 = resultado_dijkstra[1][nodo_destino1] +
                             (retornaNumeroDeString(calle_destino) % 100) +
-                            ((retornaNumeroDeString(calle_partida) % 100));
+                            distancia_a_primer_nodo;
             if(respuesta1 < menor_distancia){
                 menor_distancia = respuesta1;
                 respuesta_mas_corta = resultado_dijkstra;
@@ -93,9 +92,10 @@ int main(){
         // Verificar Dijkstra nodo_partida1 a nodo_destino2
         if(matriz[nodo_partida2][nodo_partida1] && matriz[nodo_destino2][nodo_destino1]){
             resultado_dijkstra = dijkstra(nodo_partida1, nodo_destino2);
+            distancia_a_primer_nodo = (retornaNumeroDeString(calle_partida) % 100);
             respuesta1 = resultado_dijkstra[1][nodo_destino2] +
                             (100 - (retornaNumeroDeString(calle_destino) % 100)) +
-                            ((retornaNumeroDeString(calle_partida) % 100));
+                            distancia_a_primer_nodo;
             if(respuesta1 < menor_distancia){
                 menor_distancia = respuesta1;
                 respuesta_mas_corta = resultado_dijkstra;
@@ -107,9 +107,10 @@ int main(){
         // Verificar Dijkstra nodo_partida2 a nodo_destino1
         if(matriz[nodo_partida1][nodo_partida2] && matriz[nodo_destino1][nodo_destino2]){
             resultado_dijkstra = dijkstra(nodo_partida2, nodo_destino1);
+            distancia_a_primer_nodo = 100 - (retornaNumeroDeString(calle_partida) % 100);
             respuesta1 = resultado_dijkstra[1][nodo_destino1] +
                             (retornaNumeroDeString(calle_destino) % 100) +
-                            (100 - (retornaNumeroDeString(calle_partida) % 100));
+                            distancia_a_primer_nodo;
             if(respuesta1 < menor_distancia){
                 menor_distancia = respuesta1;
                 respuesta_mas_corta = resultado_dijkstra;
@@ -121,10 +122,10 @@ int main(){
         // Verificar Dijkstra nodo_partida2 a nodo_destino2
         if(matriz[nodo_partida1][nodo_partida2] && matriz[nodo_destino2][nodo_destino1]){
             resultado_dijkstra = dijkstra(nodo_partida2, nodo_destino2);
-
+            distancia_a_primer_nodo = (100 - (retornaNumeroDeString(calle_partida) % 100));
             respuesta1 = resultado_dijkstra[1][nodo_destino2] +
                             (100 - (retornaNumeroDeString(calle_destino) % 100)) +
-                            (100 - (retornaNumeroDeString(calle_partida) % 100));
+                            distancia_a_primer_nodo;
             if(respuesta1 < menor_distancia){
                 menor_distancia = respuesta1;
                 respuesta_mas_corta = resultado_dijkstra;
@@ -132,7 +133,7 @@ int main(){
                 nodo_llegada = nodo_destino2;
             } 
         }
-
+        distancias_a_primer_nodo.push_back(distancia_a_primer_nodo);
         se_repite_loop = false;
         if (respuesta[0] == 'y' || respuesta[0] == 'Y'){
             respuesta = "n";
@@ -142,7 +143,7 @@ int main(){
             auxiliar = respuesta_mas_corta;
             menor_distancia_por_recorrido.push_back(menor_distancia);
             nodos_partida.push_back(nodo_partida);
-            nodos_llegada.push_back(nodo_llegada);
+            nodos_llegada.push_back(nodo_llegada); 
         }
     }while(se_repite_loop);
 
@@ -161,13 +162,17 @@ int main(){
         iterador = respuesta_mas_corta[0][iterador];
     }
 
+    
+    cout << "Conduzca " << distancias_a_primer_nodo[0] << " metros y " << endl;
+    
+
     for (auto it = recorrido1.rbegin(); it != recorrido1.rend(); it++){
         pair<int, int> traduccion_cartesiana = coordenada_nodo_cartesiana(*it);
         cout << "Vaya a la interseccion de " << cartesiana_a_string(traduccion_cartesiana.first, traduccion_cartesiana.second) << endl;
     }
     
     if (respuesta_mas_corta.size() == 4){
-        cout << "Ahora conduzca " << *(calle_destino.begin() + 1) << *(calle_destino.rbegin() + 0) << " metros y llegara a su parada " << calle_partida << endl;
+        cout << "Ahora conduzca " << *(calle_destino.rbegin() + 1) << *(calle_destino.rbegin() + 0) << " metros y llegara a su parada " << calle_partida << endl;
         vector<int> recorrido2;
         recorrido2.push_back(nodos_llegada[1]);
         int iterador = nodos_llegada[1];
@@ -175,7 +180,8 @@ int main(){
             recorrido2.push_back(respuesta_mas_corta[2][iterador]);
             iterador = respuesta_mas_corta[2][iterador];
         }
-
+        
+        cout << "Conduzca " << distancias_a_primer_nodo[1] << " metros y " << endl;
         for (auto it = recorrido2.rbegin(); it != recorrido2.rend(); it++){
             pair<int, int> traduccion_cartesiana = coordenada_nodo_cartesiana(*it);
             cout << "Vaya a la interseccion de " << cartesiana_a_string(traduccion_cartesiana.first, traduccion_cartesiana.second) << endl;
@@ -186,7 +192,6 @@ int main(){
     else{
         cout << "Conduzca " << *(calle_destino.rbegin() + 1) << *(calle_destino.rbegin()) << " metros y llegara a " << calle_destino << endl;
         cout << "La cantidad total de metros fue de " << menor_distancia_por_recorrido[0] << endl;   
-
     }    
 
     return 0;
