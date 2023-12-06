@@ -179,7 +179,7 @@ int main(){
             iterador = respuesta_mas_corta[2][iterador];
         }
         
-        cout << "Conduzca " << distancias_a_primer_nodo[1] << " metros y " << endl;
+        cout << "Conduzca " << distancias_a_primer_nodo[1] << " metros en la direccion de la calle." << endl;
         for (auto it = recorrido2.rbegin(); it != recorrido2.rend(); it++){
             pair<int, int> traduccion_cartesiana = coordenada_nodo_cartesiana(*it);
             cout << "Vaya a la interseccion de " << cartesiana_a_string(traduccion_cartesiana.first, traduccion_cartesiana.second) << endl;
