@@ -65,16 +65,16 @@ vector<pair<int,int>> coordenada_string_cartesiana(string input){
         vector<pair<int,int>> resultado; 
         if(nombre_calle == "Diagonal"){
             if (stoi(numero) <= 100){
-                resultado = {make_pair(13,7), make_pair(12,6)};
+                resultado = {make_pair(7,13), make_pair(6,12)};
                 return resultado;
             } else if (stoi(numero) <= 200){
-                resultado = {make_pair(12,6), make_pair(11,5)};
+                resultado = {make_pair(6,12), make_pair(5,11)};
                 return resultado;
             } else if (stoi(numero) <= 300){
-                resultado = {make_pair(11,5), make_pair(10,4)};
+                resultado = {make_pair(5,11), make_pair(4,10)};
                 return resultado;
             } else {
-                resultado = {make_pair(-1,-1), make_pair(-1,-1)};
+                resultado = {make_pair(-1,-1), make_pair(-1,1)};
                 return resultado;
             }
         }

@@ -54,7 +54,7 @@ int main(){
             cout << "Ha ocurrido un error en el ingreso de datos: Calle de partida invalida. ";
             exit(-1);
         }
-
+        cout << "Pase las calles a xy" << endl;
         cond1 = (calle_destino_xy[0].first == -1);
         cond2 = (calle_destino_xy[0].second == -1);
         cond3 = (calle_destino_xy[1].first == -1);
@@ -70,11 +70,16 @@ int main(){
         int nodo_destino1 = coordenada_cartesiana_nodo(calle_destino_xy[0].first, calle_destino_xy[0].second);
         int nodo_destino2 = coordenada_cartesiana_nodo(calle_destino_xy[1].first, calle_destino_xy[1].second);
         
+        cout << "Obtuve los nodos " << endl;
+
         vector<vector<int>> vector_resultado = dijkstra(nodo_partida1, nodo_destino1);
 
         vector<vector<int>> resultado_dijkstra;
         int respuesta1;
         menor_distancia = INT_MAX;
+        cout << "nodo_partida 1 " << nodo_partida1 << " " << "nodo_partida 2 " << nodo_partida2 << endl;
+        cout << "nodo_llegada" << nodo_partida1 << " " << "nodo_llegada 2 " << nodo_partida2 << endl;
+        
         // Verificar Dijkstra nodo_partida1 a nodo_destino1
         if(matriz[nodo_partida2][nodo_partida1] && matriz[nodo_destino1][nodo_destino2]){
             resultado_dijkstra = dijkstra(nodo_partida1, nodo_destino1);
@@ -130,6 +135,7 @@ int main(){
                 nodo_llegada = nodo_destino2;
             } 
         }
+
         se_repite_loop = false;
         if (respuesta[0] == 'y' || respuesta[0] == 'Y'){
             respuesta = "n";
